@@ -23,6 +23,7 @@ app.use('/author', authorRouter);
 app.use('/book', bookRouter);
 app.use('/chapter', chapterRouter);
 
+
 dbManager.sequelizeConnection.authenticate().then(
     () => {
         console.log('****Connection has been established successfully.****');
