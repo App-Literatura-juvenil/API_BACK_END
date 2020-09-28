@@ -15,13 +15,13 @@ chapterController.findByIdChapter = async function(req, res) {
 //List All Chapter for id Book
 chapterController.findByIdBookChapter = async function(req, res) {
 
-    const idChapter = req.params.id;
-    const books = await dbManager.Book.findAll({
+    const idBook = req.params.id;
+    const chapters = await dbManager.Chapter.findAll({
         where: {
-            idAuthor: idAuthor
+            idBook: idBook
         }
     });
-    res.json({ data: books })
+    res.json({ data: chapters })
 
 }
 
