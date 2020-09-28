@@ -1,4 +1,4 @@
-const dbManager = require('../modules/database/db.manager');
+const dbManager = require('../database/db.manager');
 const authorController = {};
 
 //List All Author
