@@ -3,64 +3,51 @@ const chapterController = {};
 
 //List Chapter for Id
 chapterController.findByIdChapter = async function(req, res) {
-    try {
-        const { idChapter } = req.params;
-        console.log(idChapter);
-
-
-        //Execute query
-        const book = await dbManager.Chapter.findOne({
-            where: {
-                idChapter: idChapter
-            }
-        });
-        //Send response
-        res.json(book);
-
-
-    } catch (e) {
-        // Print error on console
-        console.log(e);
-        // Send error message as a response 
-        res.status(500).send({
-            message: "Some error occurred"
-        });
-    }
+    const idChapter = req.params.id;
+    const chapter = await dbManager.Chapter.findOne({
+        where: {
+            idChapter: idChapter
+        }
+    });
+    res.json({ chapter: chapter })
 }
-
 
 //List All Chapter for id Book
 chapterController.findByIdBookChapter = async function(req, res) {
-    try {
-        //Execute query
-        const chapter = await dbManager.Chapter.findAll(
-            { where: { idBook: req.params.idBook } }
-        );
 
+    const idChapter = req.params.id;
+    const books = await dbManager.Book.findAll({
+        where: {
+            idAuthor: idAuthor
+        }
+    });
+    res.json({ data: books })
 
-        //Send response
-        res.json({
-            data: chapter
-        });
-
-
-    } catch (e) {
-        // Print error on console
-        console.log(e);
-        // Send error message as a response 
-        res.status(500).send({
-            message: "Some error occurred"
-        });
-    }
 }
-
 
 //Add Chapter
 chapterController.addChapter = async function(req, res) {
-    console.log(req.body);
-    chapter.push(req.body);
-    res.send ('CHAPTER ADDED');
-
+    if (!req.body) {
+        res.status(400).send({
+            message: "Request body is empty!!!!"
+        });
+        return;
+    }
+    const newChapterObject = req.body;
+    dbManager.Chapter.create(newChapterObject).then(
+        data => {
+            res.send(data);
+        }
+    ).catch(
+        err => {
+            // Print error on console
+            console.log(err);
+            // Send error message as a response 
+            res.status(500).send({
+                message: "Some error occurred"
+            });
+        }
+    );
 }
 
 //Update Chapter
@@ -71,46 +58,15 @@ chapterController.updateChapter = async function(req, res) {
         });
         return;
     }
-
-
-    // CREATING THE OBJECT TO PERSIST
-    const updateChapterObject = {
-        idBook: req.body.idBook,
-        name: req.body.name,
-        author: req.body.author
-    }
-
-
-    // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
-    dbManager.Chapter.updateChapter(updateChapterObject,
-        { where: { idChapter: req.params.idChapter } })
-        .then(
-            data => {
-                console.log(data);
-                res.send(data);
-            }
-        ).catch(
-            e => {
-                // Print error on console
-                console.log(e);
-                // Send error message as a response 
-                res.status(500).send({
-                    message: "Some error occurred"
-                });
-            }
-        );
-}
-
-//Delete Chapter
-chapterController.deleteChapter = async function(req, res) {
-    dbManager.Chapter.destroy(
-        { where: { idChapter: req.params.idChapter } }
-    ).then(
+    const updateChapterObject = req.body;
+    const idChapter = req.params.id;
+    dbManager.Chapter.update(updateChapterObject, {
+        where: {
+            idChapter: idChapter
+        }
+    }).then(
         data => {
-            console.log(data);
-            res.json(data);
-
-
+            res.send(data);
         }
     ).catch(
         e => {
@@ -121,7 +77,31 @@ chapterController.deleteChapter = async function(req, res) {
                 message: "Some error occurred"
             });
         }
-    );
+    )
+}
+
+//Delete Author
+/**
+ * Delete an exist author by id
+ * @param {*} req 
+ * @param {*} res 
+ */
+chapterController.deleteChapter = async function(req, res) {
+    const idChapter = req.params.id;
+    dbManager.Chapter.destroy({ where: { idChapter: idChapter } }).then(
+        data => {
+            res.status(200).json({ message: "Chapter was delete" });
+        }
+    ).catch(
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response 
+            res.status(500).json({
+                message: "Some error occurred"
+            });
+        }
+    )
 }
 
 module.exports = chapterController;
