@@ -20,8 +20,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/author', authorRouter);
-app.use('/book', chapterRouter);
-app.use('/chapter', bookRouter);
+app.use('/chapter', chapterRouter);
+app.use('/book', bookRouter);
 
 dbManager.sequelizeConnection.authenticate().then(
     () => {
