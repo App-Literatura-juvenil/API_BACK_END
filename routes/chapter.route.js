@@ -4,7 +4,7 @@ const chapterController = require('../modules/controller/chapter.controller')
 
 router.get('/:id', chapterController.findByIdChapter);
 
-router.get('/:idBook', chapterController.findByIdBookChapter);
+router.get('/chapterBook/:idBook', chapterController.findByIdBookChapter);
 
 router.post('/', chapterController.addChapter);
 

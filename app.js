@@ -27,7 +27,7 @@ app.use('/chapter', chapterRouter);
 dbManager.sequelizeConnection.authenticate().then(
     () => {
         console.log('****Connection has been established successfully.****');
-        // recreate the models if the tables doesn´t exists
+        // recreate the models if the tables does not exists
         dbManager.sequelizeConnection.sync().then(() => {
             console.log("Database Synced");
         });

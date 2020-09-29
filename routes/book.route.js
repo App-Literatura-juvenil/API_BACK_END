@@ -7,7 +7,7 @@ router.get('/', bookController.findAllBooks);
 
 router.get('/:id', bookController.findByIdBook);
 
-router.get('/:idAuthor', bookController.findByIdAuthorBook);
+router.get('/authorBook/:idAuthor', bookController.findByIdAuthorBook);
 
 router.post('/', bookController.addBook);
 
