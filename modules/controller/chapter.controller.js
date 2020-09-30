@@ -15,7 +15,7 @@ chapterController.findByIdChapter = async function(req, res) {
 //List All Chapter for id Book
 chapterController.findByIdBookChapter = async function(req, res) {
 
-    const idBook = req.params.id;
+    const idBook = req.params.idBook;
     const chapters = await dbManager.Chapter.findAll({
         where: {
             idBook: idBook
