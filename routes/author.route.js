@@ -7,9 +7,9 @@ router.get('/', authorController.findAllAuthor);
 
 router.get('/:id', authorController.findByIdAuthor);
 
-router.get('/:name', authorController.findByNameAuthor);
+router.get('/name/:name', authorController.findByNameAuthor);
 
-router.get('/:surname', authorController.findBySurnameAuthor);
+router.get('/surname/:surname', authorController.findBySurnameAuthor);
 
 router.post('/', authorController.addAuthor);
 
