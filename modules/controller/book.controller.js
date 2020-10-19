@@ -4,7 +4,7 @@ const bookController = {};
 //List All Books
 bookController.findAllBooks = async function(req, res) {
     const Books = await dbManager.Book.findAll();
-    res.json({ data: books });
+    res.json({ data: Books });
 
 }
 
@@ -22,7 +22,8 @@ bookController.findByIdBook = async function(req, res) {
 
 //List Books for idAuthor
 bookController.findByIdAuthorBook = async function(req, res) {
-    const idAuthor = req.params.id;
+    const idAuthor = req.params.idAuthor;
+    console.log(idAuthor)
     const books = await dbManager.Book.findAll({
         where: {
             idAuthor: idAuthor
@@ -104,12 +105,12 @@ bookController.updateBook = async function(req, res) {
 //Delete Book
 bookController.deleteBook = async function(req, res) {
     const idBook = req.params.id;
-    dbManager.Book.destroy({ 
-        where: { idBook: idBook } 
+    dbManager.Book.destroy({
+        where: { idBook: idBook }
     }).then(
         data => {
-            res.status(200).json({      
-                message: "Book was delete" 
+            res.status(200).json({
+                message: "Book was delete"
             });
         }
     ).catch(

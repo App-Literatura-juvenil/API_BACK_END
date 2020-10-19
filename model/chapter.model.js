@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         titleChapter: Sequelize.STRING,
         textChapter: Sequelize.STRING,
+        order: Sequelize.INTEGER
     }, {
         tableName: "chapters"
     });
