@@ -8,6 +8,8 @@ const indexRouter = require('./routes/index');
 const authorRouter = require('./routes/author.route');
 const chapterRouter = require('./routes/chapter.route');
 const bookRouter = require('./routes/book.route');
+const questionRouter = require('./routes/question.route');
+const answerRouter = require('./routes/answer.route');
 
 const dbManager = require("./modules/database/db.manager");
 
@@ -24,6 +26,8 @@ app.use('/', indexRouter);
 app.use('/author', authorRouter);
 app.use('/book', bookRouter);
 app.use('/chapter', chapterRouter);
+app.use('/question', questionRouter);
+app.use('/answer', answerRouter);
 
 
 dbManager.sequelizeConnection.authenticate().then(

@@ -8,8 +8,8 @@ router.get('/chapterBook/:idBook', chapterController.findByIdBookChapter);
 
 router.post('/', chapterController.addChapter);
 
-router.put('/:id', chapterController.addChapter);
+router.put('/:id', chapterController.updateChapter);
 
-router.delete('/:id', chapterController.addChapter);
+router.delete('/:id', chapterController.deleteChapter);
 
 module.exports = router;
