@@ -24,7 +24,27 @@ questionController.findByIdBookQuestion = async function(req, res) {
     res.json({ data: Questions })
 
 }
+questionController.findByIdBookQuestionsAnswer = async function(req, res) {
+    let result = [];
+    const idBook = req.params.idBook;
+    const Questions = await dbManager.Question.findAll({
+        where: {
+            idBook: idBook
+        }
+    });
+    for(let item of Questions){
+        let answers = await dbManager.Answer.findAll({
+            where: {
+                idQuestion: item.idQuestion
+            }
+        });
+        let QuestionAnswer = item;
+        QuestionAnswer.listAnswers = answers;
+        result.push(QuestionAnswer)
+    }
+    res.json({ data: result })
 
+}
 //Add Question
 questionController.addQuestion = async function(req, res) {
     if (!req.body) {

@@ -6,6 +6,8 @@ router.get('/:id', questionController.findByIdQuestion);
 
 router.get('/questionBook/:idBook', questionController.findByIdBookQuestion);
 
+router.get('/questionsAnswer/:idBook', questionController.findByIdBookQuestionsAnswer);
+
 router.post('/', questionController.addQuestion);
 
 router.put('/:id', questionController.updateQuestion);
