@@ -7,7 +7,8 @@ module.exports = (sequelize, Sequelize) => {
         },
         nameAuthor: Sequelize.STRING,
         surnameAuthor: Sequelize.STRING,
-        biography: Sequelize.STRING
+        biography: Sequelize.STRING,
+        imageAuthor: Sequelize.STRING
     }, {
         tableName: "authors"
     });
