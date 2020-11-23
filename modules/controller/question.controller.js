@@ -38,8 +38,12 @@ questionController.findByIdBookQuestionsAnswer = async function(req, res) {
                 idQuestion: item.idQuestion
             }
         });
-        let QuestionAnswer = item;
-        QuestionAnswer.listAnswers = answers;
+        let QuestionAnswer = {
+            idQuestion: item.idQuestion,
+            textQuestion: item.textQuestion,
+            listAnswers: answers
+        };
+        console.log(answers)
         result.push(QuestionAnswer)
     }
     res.json({ data: result })
